@@ -4,7 +4,7 @@
 root进程代码在 ./app/jni
 该进程负责读取游戏内僵尸的坐标并使用udp转发.
 ### root进程编译
-在jni目录下执行ndk-build
+在./app/jni目录下执行ndk-build
 生成的可执行文件在
 ```
 ./app/libs
