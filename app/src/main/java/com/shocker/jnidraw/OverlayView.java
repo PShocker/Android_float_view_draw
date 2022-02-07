@@ -18,8 +18,11 @@ class OverlayView extends View {
 
     public OverlayView(Context context, int widthPixels, int heightPixels) {
         super(context);
+        //初始化Paint
         Init();
+        //jni层初始化
         NativeInit();
+        //传入当前宽高,在jni里设置出缩放比例
         SetWidthScale(widthPixels);
         SetHeightScale(heightPixels);
     }

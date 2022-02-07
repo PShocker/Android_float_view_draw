@@ -85,7 +85,7 @@ void *recv_udp(void *)
 {
     while (true)
     {
-        //理论上来说,这里是多线程访问同一数据,需要加锁,我这里简化处理.
+        //理论上来说,这里是多线程访问同一数据,需要加锁,这里简化处理.
         recvfrom(udp_socket_fd, z_data, sizeof(z_data), 0, NULL, NULL);
     }
 }
@@ -94,6 +94,7 @@ extern "C"
 JNIEXPORT void JNICALL
 Java_com_shocker_jnidraw_OverlayView_NativeInit(JNIEnv *env, jobject thiz) {
     // TODO: implement NativeInit()
+    //初始化udp
     setup_udp();
     //创建一个线程专门来读取udp数据
     pthread_t tidp;
@@ -106,14 +107,14 @@ extern "C"
 JNIEXPORT void JNICALL
 Java_com_shocker_jnidraw_OverlayView_SetWidthScale(JNIEnv *env, jobject thiz, jint width) {
     // TODO: implement SetWidthScale()
-    //设置缩放倍率,我是在1280做的,不同分辨率要做不同处理
+    //设置缩放倍率,测试在1280*720做的,不同分辨率要做不同处理
     width_scale=(float)width/1280;
 }
 extern "C"
 JNIEXPORT void JNICALL
 Java_com_shocker_jnidraw_OverlayView_SetHeightScale(JNIEnv *env, jobject thiz, jint height) {
     // TODO: implement SetHeightScale()
-    //设置缩放倍率,我是在1280做的,不同分辨率要做不同处理
+    //同上
     height_scale=(float)height/720;
 //    height_scale=width_scale;
 }

@@ -68,12 +68,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //申请悬浮窗权限
         getFloatPermission();
         try {
             StartSuProcess();
         } catch (Exception e) {
             e.printStackTrace();
         }
+        //获取屏幕宽高,适配不同宽高的屏幕
         DisplayMetrics outMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(outMetrics);
         int widthPixels = outMetrics.widthPixels;
@@ -81,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
         WindowManager windowManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
         OverlayView overlayView = new OverlayView(this,widthPixels,heightPixels);
+        //设置悬浮窗的一些属性
         final WindowManager.LayoutParams params = new WindowManager.LayoutParams(
                 getLayoutType(),
                 WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL,
@@ -88,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= 28) {
             params.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES ;
         }
+        //添加悬浮窗
         windowManager.addView(overlayView, params);
     }
 
