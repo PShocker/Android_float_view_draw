@@ -25,3 +25,5 @@ sourceSets {
 就把可执行文件打包到app中
 ## app
 用最新版android studio打开,直接点右上方运行即可
+
+![image](img/image.jpg)
